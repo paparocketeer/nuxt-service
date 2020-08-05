@@ -77,7 +77,7 @@
     </agile>-->
     <VueSlickCarousel v-bind="slickOptions" class="slider__container">
       <div v-for="i in 5" :key="i" class="slider__slide">
-        <img :src="`./${i}.jpg`" class="slider__image w-full h-75-screen lg:max-h-2xl"/>
+        <img :src="`./${i}.jpg`" class="w-full h-75-screen lg:max-h-2xl slider__image"/>
         <div class="slider__overlay">
             <div class="slider__content">
               <p class="slider__title">Оптимальная цена</p>
