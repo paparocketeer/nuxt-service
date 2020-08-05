@@ -1064,7 +1064,7 @@ html.has-observer .decor--visible .decor__element {
 .slider__bullets {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    display: flex;
+    display: flex!important;
     justify-content: center;
 }
 .slider__bullet {
@@ -1084,7 +1084,7 @@ html.has-observer .decor--visible .decor__element {
     opacity: 0.9;
     outline: 0;
 }
-.slider__bullet--active {
+.slider__bullet--active, .slick-active button {
     opacity: 1;
 }
 .slider__next,

@@ -74,11 +74,30 @@
   <div class="slider">
     <!-- <agile :dots="false" class="slider__container">
       <div v-for="n in 6" class="slide slider__slide" :class="'slide--' + n" v-bind:key="n">{{ n }}</div>
-    </agile> -->
+    </agile>-->
     <VueSlickCarousel v-bind="slickOptions" class="slider__container">
-      <div v-for="i in 5" :key="i" class="img-wrapper">
-        <img :src="`./${i}.jpg`" />
+      <div v-for="i in 5" :key="i" class="slider__slide">
+        <img :src="`./${i}.jpg`" class="slider__image w-full h-75-screen lg:max-h-2xl"/>
+        <div class="slider__overlay">
+            <div class="slider__content">
+              <p class="slider__title">Оптимальная цена</p>
+              <p class="slider__text">Мы сэкономим Ваши деньги и предложим лучший ценовой диапазон</p>
+            </div>
+          </div>
       </div>
+      <template #prevArrow="arrowOption">
+        <button
+          class="slider__prev z-10"
+        >{{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}</button>
+      </template>
+      <template #nextArrow="arrowOption">
+        <button
+          class="slider__next z-10"
+        >{{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}</button>
+      </template>
+      <template #customPaging="page">
+        <button class="slider__bullet">{{ page }}</button>
+      </template>
     </VueSlickCarousel>
   </div>
 </template>
@@ -91,10 +110,13 @@ export default {
       slickOptions: {
         slidesToShow: 1,
         arrows: true,
-        dots: true
-      }
+        draggable: true,
+        adaptiveHeight: true,
+        dots: true,
+        dotsClass: 'slider__bullets',
+      },
     }
-  }  
+  },
 }
 </script>
 
