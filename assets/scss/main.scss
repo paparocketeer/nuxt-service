@@ -2,6 +2,7 @@
 html {
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
 }
 body {
     margin: 0;
@@ -1232,6 +1233,7 @@ html.has-observer .decor--visible .decor__element {
     position: absolute;
     top: 0;
     width: 100%;
+    opacity: 1;
 }
 .fade-enter-active {
     z-index: 2;
