@@ -32,8 +32,7 @@ export default {
   ** Global CSS
   */
   css: [
-    '@/assets/scss/main.scss',
-    'vue-slick-carousel/dist/vue-slick-carousel.css'
+    '@/assets/scss/main.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -41,7 +40,7 @@ export default {
   */
   plugins: [
     '@/plugins/filters.js',
-    '@/plugins/vue-agile'
+    '@/plugins/observer.client.js'
   ],
   /*
   ** Auto import components

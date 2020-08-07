@@ -7,7 +7,7 @@
       v-on:after-enter="afterEnter"
       v-on:before-leave="beforeLeave"
     >
-      <li v-for="i in [currentIndex]" :key="i" class="slider__slide">
+      <li v-for="i in [currentIndex - 1]" :key="i" class="slider__slide">
         <img :src="currentImg" class="w-full h-75-screen lg:max-h-2xl slider__image" />
       </li>
     </transition-group>
@@ -28,7 +28,7 @@
         v-for="(i, index) in images.length"
         :key="index"
         class="slider__bullet"
-        :class="{'slider__bullet--active' : currentIndex == index}"
+        :class="{'slider__bullet--active' : currentIndex - 1 == index}"
       ></button>
     </div>
   </div>
@@ -41,7 +41,7 @@ export default {
     return {
       images: ['./1.jpg', './2.jpg', './3.jpg', './4.jpg', './5.jpg'],
       timer: null,
-      currentIndex: 0,
+      currentIndex: 1,
       isVisible: false,
     }
   },
@@ -56,18 +56,16 @@ export default {
       this.timer = setInterval(this.next, 4000)
     },
     page(index){
-      this.currentIndex = index
+      this.currentIndex = index + 1
     },
     next: function () {
-      if (this.currentIndex == this.images.length) {
-        this.currentIndex = 0
-      }
-      this.currentIndex += 1
+      this.currentIndex == this.images.length ?
+      this.currentIndex = 1 :
+      this.currentIndex += 1      
     },
     prev: function () {
-      if (this.currentIndex == 0) {
-        this.currentIndex = this.images.length
-      }
+      this.currentIndex == 1 ?
+      this.currentIndex = this.images.length :
       this.currentIndex -= 1
     },
     afterEnter: function (el) {
@@ -80,7 +78,7 @@ export default {
 
   computed: {
     currentImg: function () {
-      return this.images[this.currentIndex]
+      return this.images[this.currentIndex - 1]
     },
   },
 }

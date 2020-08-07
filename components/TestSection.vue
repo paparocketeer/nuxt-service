@@ -1,39 +1,33 @@
 <template>
-    
-    <section class="section section_large bg-muted-light">
-      <div class="container">
-        <div class="flex -mx-4 lg:-mx-8">
-          <div class="content-animated px-4 md:w-1/2 lg:px-8">
-            <h2 class="font-bold text-3xl">Ремонты в Краснодаре</h2>
-            <p class="mt-8">
-              Компания "Ваш Ремонт" работает на рынке строительных услуг в Краснодаре уже более 8 лет. За это время нашими проектами была не одна сотня жилых объектов - частные дома, многоэтажные жилищные комлексы, элитные
-              котеджи, а также объекты общественного и административного направления. Мы предлагаем самый широкий спектр ремонтных услуг: от сантехнических и электромонтажных работ до отделки дома и укладки плитки.
-            </p>
-            <p class="mt-4">
-              Выбор подрядчика, а вместе с ним и квалифицированной бригады мастеров, пожалуй, является основной Вашей задачей на первом этапе подготовки к ремонту. Специалисты фирмы "Ваш Ремонт" помогут правильно составить
-              смету, проконсультируют при выборе материалов, а так же выполнят все работы четко и в срок. Помните, что качество ремонта напрямую зависит от людей, навыки которых приводят к желаемому результату.
-            </p>
-            <p class="mt-4">
-              На сегодняшний день ремонтами квартир и домов в Краснодаре занимаются многие строительные компании, но не все это делают действительно хорошо. И тут стоит заметить, что внушительные ценники не всегда является
-              показателем качества. Поэтому Мы хотим предложить Вам свои услуги по приемлемым ценам и с гарантией от 5 лет.
-            </p>
-            <a href="/#services" class="button button_primary mt-8">Все услуги</a>
-          </div>
-          <div class="px-4 hidden w-1/2 md:block lg:px-8">
-            <div class="decor">
-              <div aria-hidden="true" class="decor__element"></div>
-              <img
-                alt="Ремонты в Краснодаре"
-                src="/img/home/about.jpg"
-                sizes="50vw"
-                class="relative"
-              />
-            </div>
+  <section class="section section_large bg-muted-light">
+    <div class="container">
+      <div class="flex -mx-4 lg:-mx-8">
+        <div class="content-animated px-4 md:w-1/2 lg:px-8">
+          <h2 class="font-bold text-3xl">Ремонты в Краснодаре</h2>
+          <p class="mt-8">
+            Компания "Ваш Ремонт" работает на рынке строительных услуг в Краснодаре уже более 8 лет. За это время нашими проектами была не одна сотня жилых объектов - частные дома, многоэтажные жилищные комлексы, элитные
+            котеджи, а также объекты общественного и административного направления. Мы предлагаем самый широкий спектр ремонтных услуг: от сантехнических и электромонтажных работ до отделки дома и укладки плитки.
+          </p>
+          <p class="mt-4">
+            Выбор подрядчика, а вместе с ним и квалифицированной бригады мастеров, пожалуй, является основной Вашей задачей на первом этапе подготовки к ремонту. Специалисты фирмы "Ваш Ремонт" помогут правильно составить
+            смету, проконсультируют при выборе материалов, а так же выполнят все работы четко и в срок. Помните, что качество ремонта напрямую зависит от людей, навыки которых приводят к желаемому результату.
+          </p>
+          <p class="mt-4 hidden-left" v-observe-visibility="inView">
+            На сегодняшний день ремонтами квартир и домов в Краснодаре занимаются многие строительные компании, но не все это делают действительно хорошо. И тут стоит заметить, что внушительные ценники не всегда является
+            показателем качества. Поэтому Мы хотим предложить Вам свои услуги по приемлемым ценам и с гарантией от 5 лет.
+          </p>
+          <a href="/#services" class="button button_primary mt-8">Все услуги</a>
+        </div>
+        <div class="px-4 hidden w-1/2 md:block lg:px-8">
+          <div class="decor">
+            <div aria-hidden="true" class="decor__element"></div>
+            <img alt="Ремонты в Краснодаре" src="/img/home/about.jpg" sizes="50vw" class="relative" />
           </div>
         </div>
       </div>
-    </section>
-    <!-- <section class="relative p-4 md:py-16 lg:py-32 xl:py-40">
+    </div>
+  </section>
+  <!-- <section class="relative p-4 md:py-16 lg:py-32 xl:py-40">
       <img
         src="/image-styles/potolok/potolok1--small.jpg"
         alt="Внимание акция!"
@@ -467,9 +461,36 @@
           </div>
         </div>
       </div>
-    </section> -->
+  </section>-->
   <!-- <nav class="text-center my-4">
     <a href="/" class="p-2 text-sm sm:text-lg inline-block text-gray-800 hover:underline">Blog</a>
     <a href="/about" class="p-2 text-sm sm:text-lg p-2 inline-block text-gray-800 hover:underline">About</a>
   </nav>-->
 </template>
+
+<script>
+export default {  
+}
+</script>
+
+<style>
+/* the classes */
+
+.hidden-right {
+  opacity: 0;
+  transform: translate(50px, 0);
+}
+
+.hidden-left {
+  opacity: 0;
+  transform: translate(-50px, 0);
+}
+
+.showElement {
+  opacity: 1;
+  transform: translate(0, 0);
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+</style>
