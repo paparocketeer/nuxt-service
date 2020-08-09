@@ -60,6 +60,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    'nuxt-responsive-loader'
   ],
   /*
   ** Axios module configuration
@@ -69,38 +70,38 @@ export default {
   generate: {
     routes: async () => {
       let { data } = await axios.post(process.env.POSTS_URL,
-      JSON.stringify({
+        JSON.stringify({
           filter: { published: true },
-          sort: {_created:-1},
+          sort: { _created: -1 },
           populate: 1
         }),
-      {
-        headers: { 'Content-Type': 'application/json' }
-      })
-  
+        {
+          headers: { 'Content-Type': 'application/json' }
+        })
+
       const collection = collect(data.entries)
-  
+
       let tags = collection.map(post => post.tags)
-      .flatten()
-      .unique()
-      .map(tag => {
-        let payload = collection.filter(item => {
-          return collect(item.tags).contains(tag)
+        .flatten()
+        .unique()
+        .map(tag => {
+          let payload = collection.filter(item => {
+            return collect(item.tags).contains(tag)
+          }).all()
+
+          return {
+            route: `category/${tag}`,
+            payload: payload
+          }
         }).all()
-  
-        return {
-          route: `category/${tag}`,
-          payload: payload
-        }
-      }).all()
-  
+
       let posts = collection.map(post => {
         return {
           route: post.title_slug,
           payload: post
         }
       }).all()
-  
+
       return posts.concat(tags)
     }
   },
@@ -109,27 +110,27 @@ export default {
     path: '/sitemap.xml',
     hostname: process.env.URL,
     cacheTime: 1000 * 60 * 15,
-    async routes () {
+    async routes() {
       let { data } = await axios.post(process.env.POSTS_URL,
-      JSON.stringify({
+        JSON.stringify({
           filter: { published: true },
-          sort: {_created:-1},
+          sort: { _created: -1 },
           populate: 1
         }),
-      {
-        headers: { 'Content-Type': 'application/json' }
-      })
-  
+        {
+          headers: { 'Content-Type': 'application/json' }
+        })
+
       const collection = collect(data.entries)
-  
+
       let tags = collection.map(post => post.tags)
-      .flatten()
-      .unique()
-      .map(tag => `category/${tag}`)
-      .all()
-  
+        .flatten()
+        .unique()
+        .map(tag => `category/${tag}`)
+        .all()
+
       let posts = collection.map(post => post.title_slug).all()
-  
+
       return posts.concat(tags)
     }
   },
@@ -139,5 +140,42 @@ export default {
   */
   build: {
     transpile: ['vue-agile']
-  }
+  },
+  publicRuntimeConfig: {
+    ASSETS_URL: '${ASSETS_URL}'
+  },
+  responsiveLoader: {
+    name: 'img-srcset/[hash:7]-[width].[ext]',
+    steps: 3,
+    placeholder: true,
+    quality: 85,
+    sizes: [540, 1024, 1920],
+  },
+  router: {
+    scrollBehavior: async function(to) {
+
+      const findEl = async (hash, x = 0) => {
+        return (
+          document.querySelector(hash) ||
+          new Promise(resolve => {
+            setTimeout(() => {
+              resolve(findEl(hash, ++x || 1));
+            }, 100);
+          })
+        );
+      };
+
+      if (to.hash) {
+        let el = await findEl(to.hash);
+        if ("scrollBehavior" in document.documentElement.style) {
+          return window.scrollTo({ top: el.offsetTop, behavior: "smooth" });
+        } else {
+          return window.scrollTo(0, el.offsetTop);
+        }
+      }
+
+      return { x: 0, y: 0 };
+    },
+    
+  },
 }

@@ -12,6 +12,7 @@ module.exports = {
         "33-screen": "33vh",
         "50-screen": "50vh",
         "75-screen": "75vh",
+        "85-screen": "85vh",
       },
       minHeight: {
         "25-screen": "25vh",

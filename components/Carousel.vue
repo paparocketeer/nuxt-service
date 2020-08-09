@@ -5,30 +5,28 @@
       tag="ul"
       class="slider__container"
       v-on:after-enter="afterEnter"
-      v-on:before-leave="beforeLeave"
     >
-      <li v-for="i in [currentIndex - 1]" :key="i" class="slider__slide">
-        <img :src="currentImg" class="w-full h-75-screen lg:max-h-2xl slider__image" />
+      <li v-for="i in [current - 1]" :key="i" class="slider__slide">
+        <img :src="imgSrc" class="w-full h-75-screen lg:max-h-2xl slider__image" />
+        <div class="slider__overlay">
+          <div class="slider__content" :class="{ 'is-visible': isVisible }">
+            <p class="slider__title">{{slides[current - 1].title}}</p>
+            <p
+              class="slider__text">{{slides[current - 1].description}}</p>
+          </div>
+        </div>
       </li>
     </transition-group>
-    <div class="slider__overlay">
-      <div class="slider__content" :class="{ 'is-visible': isVisible }">
-        <p class="slider__title" :class="{ 'is-visible': isVisible }">Внимание акция!</p>
-        <p
-          class="slider__text"
-          :class="{ 'is-visible': isVisible }"
-        >При заказе ремонта – натяжные потолки в подарок!</p>
-      </div>
-    </div>
+    
     <button @click="prev()" class="slider__prev"></button>
     <button @click="next()" class="slider__next"></button>
     <div class="slider__bullets">
       <button
         @click="page(index)"
-        v-for="(i, index) in images.length"
+        v-for="(i, index) in slides.length"
         :key="index"
         class="slider__bullet"
-        :class="{'slider__bullet--active' : currentIndex - 1 == index}"
+        :class="{'slider__bullet--active' : current - 1 == index}"
       ></button>
     </div>
   </div>
@@ -37,48 +35,50 @@
 <script>
 export default {
   name: 'Carousel',
+  props: ['slides'],
   data() {
     return {
-      images: ['./1.jpg', './2.jpg', './3.jpg', './4.jpg', './5.jpg'],
       timer: null,
-      currentIndex: 1,
+      current: 1,
       isVisible: false,
     }
   },
 
   mounted: function () {
     this.isVisible = true
-    // this.startSlide()
-  },
+    this.startSlide()
+  }, 
 
   methods: {
     startSlide: function () {
-      this.timer = setInterval(this.next, 4000)
+      this.timer = setInterval(this.next, 7000)
     },
     page(index){
-      this.currentIndex = index + 1
+      this.isVisible = false
+      this.current = index + 1
     },
     next: function () {
-      this.currentIndex == this.images.length ?
-      this.currentIndex = 1 :
-      this.currentIndex += 1      
+      this.isVisible = false
+      this.current == this.$props.slides.length ?
+      this.current = 1 :
+      this.current += 1  
+          
     },
     prev: function () {
-      this.currentIndex == 1 ?
-      this.currentIndex = this.images.length :
-      this.currentIndex -= 1
+      this.isVisible = false
+      this.current == 1 ?
+      this.current = this.$props.slides.length :
+      this.current -= 1
+      
     },
     afterEnter: function (el) {
       this.isVisible = true
     },
-    beforeLeave: function (el) {
-      this.isVisible = false
-    },
   },
 
   computed: {
-    currentImg: function () {
-      return this.images[this.currentIndex - 1]
+    imgSrc () {
+      return this.$config.ASSETS_URL + this.$props.slides[this.current - 1].image.path 
     },
   },
 }

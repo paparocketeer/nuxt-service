@@ -493,30 +493,43 @@ address {
 .content :first-child {
     margin-top: 0;
 }
-html.has-observer .content-animated [data-animate="hide"] {
-    visibility: hidden;
+
+.hidden-right {
     opacity: 0;
-    transform: translateY(70px);
-}
-html.has-observer .content-animated [data-animate="show"] {
-    visibility: visible;
-    transition: 0.5s ease-out;
-    transition-property: opacity, transform;
+    transform: translate(50px, 0);
+  }
+  
+  .hidden-left {
+    opacity: 0;
+    transform: translate(-50px, 0);
+  }
+  
+  .hidden-btm {
+    opacity: 0;
+    transform: translate(0, 50px);
+  }
+  
+  .showElement {
     opacity: 1;
-    transform: none;
-}
-html.has-observer .content-animated [data-animate="show"]:nth-child(2) {
-    transition-delay: 50ms;
-}
-html.has-observer .content-animated [data-animate="show"]:nth-child(3) {
-    transition-delay: 0.1s;
-}
-html.has-observer .content-animated [data-animate="show"]:nth-child(4) {
-    transition-delay: 0.15s;
-}
-html.has-observer .content-animated [data-animate="show"]:nth-child(5) {
-    transition-delay: 0.2s;
-}
+    transform: translate(0, 0);
+    -webkit-transition: all 0.5s ease-out!important;
+    -moz-transition: all 0.5s ease-out!important;
+    transition: all 0.5s ease-out!important;
+  }
+  
+  .content-animated .showElement:nth-child(2) {
+      transition-delay: 50ms;
+  }
+  .content-animated .showElement:nth-child(3) {
+      transition-delay: 0.1s;
+  }
+  .content-animated .showElement:nth-child(4) {
+      transition-delay: 0.15s;
+  }
+  .content-animated .showElement:nth-child(5) {
+      transition-delay: 0.2s;
+  }
+
 .calculator__plans {
     display: none;
     width: 25%;
@@ -1168,7 +1181,7 @@ html.has-observer .decor--visible .decor__element {
     position: relative;
     z-index: 2;
 }
-.slider__title.is-visible {
+.slider__content.is-visible .slider__title {
     transform: none;
     opacity: 1;
 }
@@ -1181,7 +1194,7 @@ html.has-observer .decor--visible .decor__element {
     position: relative;
     z-index: 2;
 }
-.slider__text.is-visible {
+.slider__content.is-visible .slider__text {
     transform: none;
     opacity: 1;
 }

@@ -1,46 +1,51 @@
 <template>
   <section>
-    <div class=my-8>
-      <ul class="flex flex-col w-full p-0">
-        <li class="mb-6 w-full" v-for="(post, key) in posts" :key="key">
-          <div class="text-gray-600 font-bold text-sm tracking-wide">
-            {{ post._created | toDate }}
-            <span class="ml-1 text-xs">•</span>
-            <a v-for="tag in post.tags" :key="tag" :href="'/category/'+tag" class="ml-1">{{ tag }}</a>
-          </div>
-
-          <a :href="'/'+post.title_slug">
-            <h2 class="my-2 text-gray-800 text-lg lg:text-xl font-bold">
-              {{ post.title }}
-            </h2>
-          </a>
-
-          <div class="page-content hidden md:block text-base mb-2" v-html="post.excerpt">
-          </div>
-          <a class="text-sm text-blue-400 no-underline" :href="'/'+post.title_slug">
-            Read more
-          </a>
-        </li>
-      </ul>
+    <div class="flex-grow">
+      <carousel :slides="slides" />
+      <section-about />
+      <section-cta/>
+      <section-services/>
+      <section-calc/>
+      <section-hire/>
+      <!-- <nuxt/> -->
     </div>
   </section>
 </template>
 
 <script>
+import Carousel from '@/components/Carousel.vue'
+import SectionAbout from '@/components/Sections/SectionAbout.vue'
+import SectionCalc from '@/components/Sections/SectionCalc.vue'
+import SectionCta from '@/components/Sections/SectionCta.vue'
+import SectionHire from '@/components/Sections/SectionHire.vue'
+import SectionServices from '@/components/Sections/SectionServices.vue'
+import SectionTestimonials from '@/components/Sections/SectionTestimonials.vue'
 
 export default {
-  async asyncData ({ app }) {
-    const { data } = await app.$axios.post(process.env.POSTS_URL,
-    JSON.stringify({
-        filter: { published: true },
-        sort: {_created:-1},
-        populate: 1
-      }),
-    {
-      headers: { 'Content-Type': 'application/json' }
-    })
+  components: {
+    SectionAbout,
+    SectionCalc,
+    SectionCta,
+    SectionHire,
+    SectionServices,
+    SectionTestimonials,
+    Carousel,
+  },
 
-    return { posts: data.entries }
-  }
+  async asyncData({ app }) {
+    const carousel = await app.$axios.get(
+      process.env.CAROUSEL_URL,
+      JSON.stringify({
+        filter: { published: true },
+        sort: { _created: -1 },
+        populate: 1,
+      }),
+      {
+        headers: { 'Content-Type': 'application/json' },
+      }
+    )
+
+    return { slides: carousel.data.entries }
+  },
 }
 </script>
