@@ -5,7 +5,6 @@
       <page-header/>
       <nuxt/>
       <page-footer/>
-      <page-modals />
     <!-- </div> -->
   <!-- </div> -->
   </div>
@@ -16,16 +15,12 @@ import Vue from 'vue'
 import observer from "@/mixins/observer"
 import PageHeader from '@/components/PageHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
-import PageModals from '@/components/PageModals.vue';
-
 Vue.mixin(observer)
-
 export default {
   mixins: [ observer ],
   components: {
     PageHeader,
     PageFooter,
-    PageModals
   },  
 }
 </script>
