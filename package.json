@@ -26,6 +26,7 @@
     "sass-loader": "^9.0.2",
     "vue-agile": "^1.1.3",
     "vue-in-viewport-mixin": "^2.0.1",
-    "vue-slick-carousel": "^1.0.6"
+    "vue-slick-carousel": "^1.0.6",
+    "vue-the-mask": "^0.11.1"
   }
 }

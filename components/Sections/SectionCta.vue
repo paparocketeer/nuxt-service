@@ -10,9 +10,9 @@
         class="font-bold text-2xl md:text-4xl mt-4"
       >При заказе ремонта – натяжные потолки в подарок!</p>
       <p class="mt-4 italic">* Светильники для натяжного потолка приобретаются отдельно.</p>
-      <button class="button text-black button_primary mt-8 py-4 px-6" @click="openModal">Заказать ремонт</button>
+      <button class="button text-black button_primary mt-8 py-4 px-6" @click="showModal">Заказать ремонт</button>
     </div>
-    <cta-modal v-model="modalOpen"></cta-modal>
+    <cta-modal v-show="isModalVisible" @close="closeModal" />
   </section>
 </template>
 
@@ -22,15 +22,18 @@ export default {
   components: {
     CtaModal,
   },
-  data() {
+  data () {
     return {
-      modalOpen: false,
-    }
+      isModalVisible: false,
+    };
   },
   methods: {
-    openModal() {
-      this.modalOpen = !this.modalOpen
+    showModal() {
+      this.isModalVisible = true;
     },
+    closeModal() {
+      this.isModalVisible = false;
+    }
   },
 }
 </script>

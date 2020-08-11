@@ -40,7 +40,8 @@ export default {
   */
   plugins: [
     '@/plugins/filters.js',
-    '@/plugins/observer.client.js'
+    '@/plugins/observer.client.js',
+    '@/plugins/mask.client.js'
   ],
   /*
   ** Auto import components
@@ -142,7 +143,8 @@ export default {
     transpile: ['vue-agile']
   },
   publicRuntimeConfig: {
-    ASSETS_URL: '${ASSETS_URL}'
+    ASSETS_URL: '${ASSETS_URL}',
+    MAILER_URL: '${MAILER_URL}'
   },
   responsiveLoader: {
     name: 'img-srcset/[hash:7]-[width].[ext]',
