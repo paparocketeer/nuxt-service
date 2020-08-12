@@ -2,17 +2,15 @@
   <section class="calculator section section_large section_striped">
     <div class="container flex">
       <div class="calculator__plans">
-        <button class="calculator__plan calculator__plan--active">
-          <strong class="calculator__plan-title">"Эконом"</strong>
-          <span class="calculator__plan-price">(2500 р/м.кв.)</span>
-        </button>
-        <button class="calculator__plan">
-          <strong class="calculator__plan-title">"Капитальный"</strong>
-          <span class="calculator__plan-price">(6000 р/м.кв.)</span>
-        </button>
-        <button class="calculator__plan">
-          <strong class="calculator__plan-title">"Стандарт"</strong>
-          <span class="calculator__plan-price">(4000 р/м.кв.)</span>
+        <button
+          @click="page(index)"
+          v-for="(i, index) in services.length"
+          :key="index"
+          class="calculator__plan"
+          :class="{'calculator__plan--active' : current - 1 == index}"
+        >
+          <strong class="calculator__plan-title">{{services[index].plan}}</strong>
+          <span class="calculator__plan-price">{{services[index].price}}</span>
         </button>
       </div>
       <div class="calculator__panel">
@@ -23,12 +21,12 @@
           <button class="calculator__toggler">Стандарт</button>
         </div>
         <div class="calculator__controls">
-          <label for="plan" class="calculator__label sm:hidden">Выберите тип ремонта</label>
+          <!-- <label for="plan" class="calculator__label sm:hidden">Выберите тип ремонта</label>
           <select id="plan" class="calculator__select form-select mb-4 sm:hidden">
             <option selected value="econom">Эконом</option>
             <option value="full">Капитальный</option>
             <option value="standart">Стандарт</option>
-          </select>
+          </select>-->
           <label for="area" class="calculator__label">Введите площадь для расчета</label>
           <span class="form-field calculator__input">
             <input id="area" value="42" class="form-text" />
@@ -41,13 +39,8 @@
           <strong class="calculator__operand">105000 р</strong>
         </div>
         <p class="calculator__services-title">Перечень работ</p>
-        <ul class="calculator__services">
-          <li>Обработка стен грунтовкой</li>
-          <li>Демонтаж обоев, линолеума</li>
-          <li>Шпаклевка стен</li>
-          <li>Оклейка обоями или покраска стен и потолков</li>
-          <li>Монтаж натяжных потолков в один уровень</li>
-          <li>Укладка ламината или линолеума</li>
+        <ul v-for="i in [current - 1]" :key="i" class="calculator__services">
+          <li v-for="(item, index) in services[current - 1].list" :key="index">{{ item }}</li>
         </ul>
       </div>
     </div>
@@ -58,14 +51,31 @@
 export default {
   data() {
     return {
-      current: 1,
+      current: 2,
       isVisible: false,
       services: [
-        {plan: 'Eco', list: ['gdagsdg', 'gdsgsdgsdg']},
-        {plan: 'Full', list: ['gdagsdg', 'gdsgsdgsdg', 'fgadgdagsdg', 'fsdafgsadf']},
-        {plan: 'Mid', list: ['gdagsdg', 'gdsgsdgsdg', 'fgadgdagsdg']},
-      ]
+        {
+          plan: '"Эконом"',
+          price: '(2500 р/м.кв.)',
+          list: ['gdagsdg', 'gdsgsdgsdg'],
+        },
+        {
+          plan: '"Капитальный"',
+          price: '(6000 р/м.кв.)',
+          list: ['gdagsdg', 'gdsgsdgsdg', 'fgadgdagsdg', 'fsdafgsadf'],
+        },
+        {
+          plan: '"Стандарт"',
+          price: '(4000 р/м.кв.)',
+          list: ['gdagsdg', 'gdsgsdgsdg', 'fgadgdagsdg'],
+        },
+      ],
     }
+  },
+  methods: {
+    page(index) {
+      this.current = index + 1
+    },
   },
 }
 </script>
