@@ -144,7 +144,7 @@ export default {
   },
   publicRuntimeConfig: {
     ASSETS_URL: '${ASSETS_URL}',
-    MAILER_URL: '${MAILER_URL}'
+    // MAILER_URL: '${MAILER_URL}'
   },
   responsiveLoader: {
     name: 'img-srcset/[hash:7]-[width].[ext]',

@@ -2,11 +2,11 @@
   <section>
     <div class="flex-grow">
       <carousel :slides="slides" />
-      <section-about />
-      <section-cta/>
-      <section-services/>
+      <!-- <section-about /> -->
+      <!-- <section-cta/> -->
+      <!-- <section-services/> -->
       <section-calc/>
-      <section-hire/>
+      <!-- <section-hire/> -->
       <!-- <nuxt/> -->
     </div>
   </section>
