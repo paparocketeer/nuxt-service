@@ -2,7 +2,7 @@
   <div class="min-h-screen flex flex-col">
   <!-- <div class="flex flex-row justify-center w-screen"> -->
     <!-- <div class="overflow-hidden content flex flex-col p-4 md:p-8"> -->
-      <page-header/>
+      <page-header :posts="navs.entries"/>
       <nuxt/>
       <page-footer/>
     <!-- </div> -->
@@ -21,6 +21,14 @@ export default {
   components: {
     PageHeader,
     PageFooter,
-  },  
+  },
+  data() {
+      return {
+        navs: []
+      }
+    },
+    async fetch() {
+      this.navs = await this.$http.$get(this.$config.POSTS_URL)
+    }  
 }
 </script>

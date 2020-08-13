@@ -1,19 +1,14 @@
 <template>
   <section>
-    <article class="my-8">
-      <div class="text-gray-600 font-bold text-sm tracking-wide">
-        <a
-          v-for="(tag, key) in post.tags"
-          :key="key"
-          :href="'/category/'+tag"
-          class="ml-1"
-        >{{ tag }}</a>
-      </div>
+    <article class="my-8" v-if="post">
       <h1 class="mt-2 text-3xl font-bold">{{ post.title }}</h1>
       <div
         class="mt-4 markdown"
-        v-html="post.excerpt + '\n' + post.content"
+        v-html="post.content"
       ></div>
+    </article>
+    <article v-else>
+      waiting
     </article>
   </section>
 </template>
@@ -44,11 +39,11 @@ export default {
         }
       )
 
-      if (!data.entries[0]) {
+      if (!data ) {
         return error({ message: '404 Page not found', statusCode: 404 })
       }
 
-      return { post: data.entries[0] }
+      return { post: data ? data.entries[0] : '' }
     }
   },
 }

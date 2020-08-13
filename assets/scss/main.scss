@@ -1267,6 +1267,18 @@ html.has-observer .decor--visible .decor__element {
     transform: scale(1.5);
     opacity: 0;
 }
+.services-dropdown{
+    min-width: 16rem;
+    position: absolute;
+    top: 100%;
+    right: 80px;
+}
+
+@media (max-width: 767.98px) {
+    .services-dropdown{
+        right: 0;
+    }
+}
 .services-nav {
     --bg-opacity: 1;
     background-color: #725b53;

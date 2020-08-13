@@ -41,7 +41,8 @@ export default {
   plugins: [
     '@/plugins/filters.js',
     '@/plugins/observer.client.js',
-    '@/plugins/mask.client.js'
+    '@/plugins/mask.client.js',
+    '@/plugins/click-outside.client.js'
   ],
   /*
   ** Auto import components
@@ -61,6 +62,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxt/http',
     'nuxt-responsive-loader'
   ],
   /*
@@ -82,19 +84,19 @@ export default {
 
       const collection = collect(data.entries)
 
-      let tags = collection.map(post => post.tags)
-        .flatten()
-        .unique()
-        .map(tag => {
-          let payload = collection.filter(item => {
-            return collect(item.tags).contains(tag)
-          }).all()
+      // let tags = collection.map(post => post.tags)
+      //   .flatten()
+      //   .unique()
+      //   .map(tag => {
+      //     let payload = collection.filter(item => {
+      //       return collect(item.tags).contains(tag)
+      //     }).all()
 
-          return {
-            route: `category/${tag}`,
-            payload: payload
-          }
-        }).all()
+      //     return {
+      //       route: `category/${tag}`,
+      //       payload: payload
+      //     }
+      //   }).all()
 
       let posts = collection.map(post => {
         return {
@@ -103,7 +105,8 @@ export default {
         }
       }).all()
 
-      return posts.concat(tags)
+      return posts
+      // .concat(tags)
     }
   },
 
@@ -124,15 +127,16 @@ export default {
 
       const collection = collect(data.entries)
 
-      let tags = collection.map(post => post.tags)
-        .flatten()
-        .unique()
-        .map(tag => `category/${tag}`)
-        .all()
+      // let tags = collection.map(post => post.tags)
+      //   .flatten()
+      //   .unique()
+      //   .map(tag => `category/${tag}`)
+      //   .all()
 
       let posts = collection.map(post => post.title_slug).all()
 
-      return posts.concat(tags)
+      return posts
+      // .concat(tags)
     }
   },
   /*
@@ -144,7 +148,8 @@ export default {
   },
   publicRuntimeConfig: {
     ASSETS_URL: '${ASSETS_URL}',
-    // MAILER_URL: '${MAILER_URL}'
+    CAROUSEL_URL: '${CAROUSEL_URL}',
+    POSTS_URL: '${POSTS_URL}'
   },
   responsiveLoader: {
     name: 'img-srcset/[hash:7]-[width].[ext]',
