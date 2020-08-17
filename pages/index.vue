@@ -32,9 +32,9 @@ export default {
     Carousel,
   },
 
-  async asyncData({ app }) {
+  async asyncData({ app, $config: { CAROUSEL_URL } }) {
     const carousel = await app.$axios.get(
-      process.env.CAROUSEL_URL,
+      CAROUSEL_URL,
       JSON.stringify({
         filter: { published: true },
         sort: { _created: -1 },

@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   head() {
     return {
@@ -23,7 +25,7 @@ export default {
       ],
     }
   },
-  async asyncData({ app, params, error, payload }) {
+  async asyncData({ app, params, error, payload, $config: { POSTS_URL } }) {
     if (payload) {
       console.log('payload')
       return { post: payload }
@@ -31,7 +33,7 @@ export default {
 
       try {
         let res = await app.$axios.post(
-        process.env.POSTS_URL,
+        POSTS_URL,
         JSON.stringify({
           filter: { published: true, title_slug: params.title_slug },
           sort: { _created: -1 },
