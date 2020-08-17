@@ -25,9 +25,12 @@ export default {
   },
   async asyncData({ app, params, error, payload }) {
     if (payload) {
+      console.log('payload')
       return { post: payload }
     } else {
-      let { data } = await app.$axios.post(
+
+      try {
+        let res = await app.$axios.post(
         process.env.POSTS_URL,
         JSON.stringify({
           filter: { published: true, title_slug: params.title_slug },
@@ -39,11 +42,14 @@ export default {
         }
       )
 
-      if (!data ) {
+      console.log(res)
+      return { post: res.data.entries[0] }
+
+      } catch (err) {
+        console.log(err)
         return error({ message: '404 Page not found', statusCode: 404 })
       }
-
-      return { post: data ? data.entries[0] : '' }
+      
     }
   },
 }
