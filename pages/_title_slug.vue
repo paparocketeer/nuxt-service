@@ -38,42 +38,12 @@
           </svg>
           <h3 class="relative text-center font-bold text-primary uppercase">Навигация</h3>
           <ul class="mt-4 relative">
-            <li>
-              <a href="/uslugi/otdelochnie-raboty" class="services-nav__link">Отделочные работы</a>
-            </li>
-            <li>
-              <a href="/uslugi/plitochnie-raboty" class="services-nav__link">Плиточные работы</a>
-            </li>
-            <li>
-              <a
-                href="/uslugi/potolochnie-raboty"
-                aria-current="page"
-                class="services-nav__link bg-white text-black pointer-events-none focus:text-muted"
-              >Потолочные работы</a>
-            </li>
-            <li class="border-t my-2 mx-4">
-              <!---->
-            </li>
-            <li>
-              <a
-                href="/uslugi/ustanovka-okon-dverey"
+            <li v-for="(nav,index) in navs" :key="index">
+              <nuxt-link
+                :to="nav.title_slug"
                 class="services-nav__link"
-              >Установка окон и дверей</a>
-            </li>
-            <li>
-              <a href="/uslugi/remont-sten-polov" class="services-nav__link">Ремонт стен и полов</a>
-            </li>
-            <li class="border-t my-2 mx-4">
-              <!---->
-            </li>
-            <li>
-              <a href="/uslugi/santehnika" class="services-nav__link">Сантехнические работы</a>
-            </li>
-            <li class="border-t my-2 mx-4">
-              <!---->
-            </li>
-            <li>
-              <a href="/uslugi/elektrika" class="services-nav__link">Услуги электрика</a>
+                :class="{'bg-white text-black pointer-events-none focus:text-muted' : nav.title_slug == post.title_slug}"
+              >{{ nav.title }}</nuxt-link>
             </li>
           </ul>
         </nav>
@@ -284,7 +254,7 @@ export default {
     if (payload) {
       console.log('payloaded')
       console.log(payload)
-      return { post, navs}
+      return { post, navs }
     } else {
       try {
         let res = await app.$axios.post(

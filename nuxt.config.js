@@ -104,7 +104,7 @@ export default {
       let posts = collection.map(post => {
         return {
           route: post.title_slug,
-          payload: { post, navs }
+          payload: { post: post, navs: navs }
         }
       }).all()
 
