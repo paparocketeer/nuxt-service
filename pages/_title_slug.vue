@@ -252,9 +252,7 @@ export default {
   },
   async asyncData({ app, params, error, payload, $config: { POSTS_URL } }) {
     if (payload) {
-      console.log('payloaded')
-      console.log(payload)
-      return { post, navs }
+      return { post: payload.post, navs: payload.navs }
     } else {
       try {
         let res = await app.$axios.post(
