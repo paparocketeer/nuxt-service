@@ -32,11 +32,6 @@
       >+7 (918) 353-64-94</a>
       <nav class="ml-auto">
         <nuxt-link to="/" class="navbar__link">Главная</nuxt-link>
-        <!-- <a
-          href="/"
-          aria-current="page"
-          class="navbar__link hidden md:inline nuxt-link-exact-active nuxt-link-active navbar__link_active"
-        >Главная</a>-->
         <span @click="dropdown = !dropdown" v-click-outside="close">
           <button class="navbar__link">Услуги</button>
           <transition name="dropdown-fade">
@@ -72,6 +67,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

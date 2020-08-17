@@ -1,17 +1,6 @@
 <template>
-  <!-- <section>
-    <article class="my-8" v-if="post">
-      <h1 class="mt-2 text-3xl font-bold">{{ post.title }}</h1>
-      <div
-        class="mt-4 markdown"
-        v-html="post.content"
-      ></div>
-    </article>
-    <article v-else>
-      waiting
-    </article>
-  </section>-->
   <div class="service-page content-animated flex-grow">
+    <page-header :posts="navs" />
     <div class="service-page__title">
       <img :src="$config.ASSETS_URL + post.image.path " class="service-page__main-image" />
       <h1 class="relative z-1">{{ post.title }}</h1>
@@ -49,59 +38,22 @@
         </nav>
       </aside>
     </div>
-    <section class="section section_large pt-0">
+    <section class="section section_large pt-0" v-if="post.portfolio">
       <div class="container">
         <h2 class="text-2xl font-bold mb-8 text-center" data-animate="show">Наши работы</h2>
         <div class="decor decor--visible">
           <div aria-hidden="true" class="decor__element"></div>
-          <div class="slider relative">
-            <ul class="slider__container">
-              <li class="slider__slide">
-                <img
-                  src="/image-styles/potolok/potolok1--small.jpg"
-                  srcset="/image-styles/potolok/potolok1--small.jpg 540w, /image-styles/potolok/potolok1--medium.jpg 1024w, /image-styles/potolok/potolok1--large.jpg 1920w"
-                  sizes="100vw"
-                  class="slider__image"
-                />
-                <!---->
-              </li>
-              <li class="slider__slide" style="display: none;">
-                <img
-                  src="/image-styles/potolok/potolok2--small.jpg"
-                  srcset="/image-styles/potolok/potolok2--small.jpg 540w, /image-styles/potolok/potolok2--medium.jpg 1024w, /image-styles/potolok/potolok2--large.jpg 1920w"
-                  sizes="100vw"
-                  class="slider__image"
-                />
-                <!---->
-              </li>
-              <li class="slider__slide" style="display: none;">
-                <img
-                  src="/image-styles/potolok/potolok3--small.jpg"
-                  srcset="/image-styles/potolok/potolok3--small.jpg 540w, /image-styles/potolok/potolok3--medium.jpg 1024w, /image-styles/potolok/potolok3--large.jpg 1920w"
-                  sizes="100vw"
-                  class="slider__image"
-                />
-                <!---->
-              </li>
-              <li class="slider__slide" style="display: none;">
-                <img
-                  src="/image-styles/potolok/potolok4--small.jpg"
-                  srcset="/image-styles/potolok/potolok4--small.jpg 540w, /image-styles/potolok/potolok4--medium.jpg 1024w, /image-styles/potolok/potolok4--large.jpg 1920w"
-                  sizes="100vw"
-                  class="slider__image"
-                />
-                <!---->
-              </li>
-            </ul>
-            <button data-slide-prev class="slider__prev">Предыдущий слайд</button>
-            <button data-slide-next class="slider__next">Следующий слайд</button>
-            <div class="slider__bullets">
-              <button data-slide="0" class="slider__bullet slider__bullet--active">К слайду 0</button>
-              <button data-slide="1" class="slider__bullet">К слайду 1</button>
-              <button data-slide="2" class="slider__bullet">К слайду 2</button>
-              <button data-slide="3" class="slider__bullet">К слайду 3</button>
-            </div>
-          </div>
+            <carousel
+              :slides="post.portfolio.map(slide => {
+                return {
+                  image: $config.BASE_URL + slide.path
+                }
+              })"
+              :transition="'slide'"
+              :imgClass="'slider__image'"
+              :caption="false"
+              :autoplay="false"
+            />
         </div>
       </div>
     </section>
@@ -116,65 +68,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Монтаж натяжного потолка</td>
-              <td class="text-center">200 р/м.кв.</td>
-            </tr>
-            <tr>
-              <td>Багет алюминиевый стенового крепления</td>
-              <td class="text-center">130 р/м.п.</td>
-            </tr>
-            <tr>
-              <td>Декоративная вставка ПВХ</td>
-              <td class="text-center">50 р/м.п.</td>
-            </tr>
-            <tr>
-              <td>Монтаж люстры</td>
-              <td class="text-center">400 р</td>
-            </tr>
-            <tr>
-              <td>Монтаж точечного светильника</td>
-              <td class="text-center">300 р</td>
-            </tr>
-            <tr>
-              <td>Подготовка крепления для люстры</td>
-              <td class="text-center">300 р</td>
-            </tr>
-            <tr>
-              <td>Подготовка крепления для светильника</td>
-              <td class="text-center">200 р</td>
-            </tr>
-            <tr>
-              <td>Монтаж вытяжки</td>
-              <td class="text-center">300 р</td>
-            </tr>
-            <tr>
-              <td>Монтаж решетки вентиляции</td>
-              <td class="text-center">300 р</td>
-            </tr>
-            <tr>
-              <td>Обвод трубы</td>
-              <td class="text-center">300 р</td>
-            </tr>
-            <tr>
-              <td>Установка крепления для карнизов</td>
-              <td class="text-center">200 р/м.п.</td>
-            </tr>
-            <tr>
-              <td>Потолки "Армстронг"</td>
-              <td class="text-center">250 р/м.кв.</td>
-            </tr>
-            <tr>
-              <td>Потолок из гипсокартона в один уровень</td>
-              <td class="text-center">400 р/м.кв.</td>
-            </tr>
-            <tr>
-              <td>Потолок из гипсокартона в два уровня</td>
-              <td class="text-center">500 р/м.кв.</td>
-            </tr>
-            <tr>
-              <td>Потолок из гипсокартона в три уровня</td>
-              <td class="text-center">700 р/м.кв.</td>
+            <tr v-for="(value, index) in post.pricelist" :key="index">
+              <td>{{value.value.name}}</td>
+              <td class="text-center">{{value.value.price}}</td>
             </tr>
           </tbody>
         </table>
@@ -235,6 +131,7 @@
         </div>
       </div>
     </section>
+    <page-footer />
   </div>
 </template>
 
@@ -283,8 +180,11 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style>
 .service-page__title h1 {
   z-index: 1;
+}
+.pt-0{
+  padding-top: 0!important;
 }
 </style>

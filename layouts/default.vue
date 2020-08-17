@@ -2,9 +2,9 @@
   <div class="min-h-screen flex flex-col">
   <!-- <div class="flex flex-row justify-center w-screen"> -->
     <!-- <div class="overflow-hidden content flex flex-col p-4 md:p-8"> -->
-      <page-header :posts="navs.entries"/>
+      <!-- <page-header :posts="navs.entries"/> -->
       <nuxt/>
-      <page-footer/>
+      <!-- <page-footer/> -->
     <!-- </div> -->
   <!-- </div> -->
   </div>
@@ -18,17 +18,17 @@ import PageFooter from '@/components/PageFooter.vue'
 Vue.mixin(observer)
 export default {
   mixins: [ observer ],
-  components: {
-    PageHeader,
-    PageFooter,
-  },
-  data() {
-      return {
-        navs: []
-      }
-    },
-    async fetch() {
-      this.navs = await this.$http.$get(this.$config.POSTS_URL)
-    }  
+  // components: {
+  //   PageHeader,
+  //   PageFooter,
+  // },
+  // data() {
+  //     return {
+  //       navs: []
+  //     }
+  //   },
+    // async fetch() {
+    //   this.navs = await this.$http.$get(this.$config.POSTS_URL)
+    // }  
 }
 </script>
