@@ -84,24 +84,27 @@ export default {
 
       const collection = collect(data.entries)
 
-      // let tags = collection.map(post => post.tags)
-      //   .flatten()
-      //   .unique()
-      //   .map(tag => {
-      //     let payload = collection.filter(item => {
-      //       return collect(item.tags).contains(tag)
-      //     }).all()
-
-      //     return {
-      //       route: `category/${tag}`,
-      //       payload: payload
-      //     }
+      let navs = collection.map(({ title, title_slug }) => ({
+        title,
+        title_slug,
+      }))
+      // .flatten()
+      // .unique()
+      // .map(tag => {
+      //   let payload = collection.filter(item => {
+      //     return collect(item.tags).contains(tag)
       //   }).all()
+
+      //   return {
+      //     route: `category/${tag}`,
+      //     payload: payload
+      //   }
+      // }).all()
 
       let posts = collection.map(post => {
         return {
           route: post.title_slug,
-          payload: post
+          payload: { post, navs }
         }
       }).all()
 
@@ -159,7 +162,7 @@ export default {
     sizes: [540, 1024, 1920],
   },
   router: {
-    scrollBehavior: async function(to) {
+    scrollBehavior: async function (to) {
 
       const findEl = async (hash, x = 0) => {
         return (
@@ -183,6 +186,6 @@ export default {
 
       return { x: 0, y: 0 };
     },
-    
+
   },
 }
