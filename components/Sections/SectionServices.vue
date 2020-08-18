@@ -1,10 +1,10 @@
 <template>
-    <section id="services" class="section section_large content-animated">
-      <div class="container">
+    <section id="services" class="section section_large">
+      <div class="container content-animated">
         <h2 class="font-bold text-3xl text-center">Услуги и цены</h2>
         <div class="services-block">
 
-          <div v-for="(post,index) in posts" :key="index" class="services-block__item mt-4 lg:mt-16">
+          <div v-for="(post,index) in posts" :key="index" class="services-block__item mt-4 lg:mt-16 hidden-btm" v-observe-visibility="inView">
             <figure class="media-card">
               <img
                 :src="post.image"

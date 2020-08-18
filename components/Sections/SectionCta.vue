@@ -4,7 +4,7 @@
       :srcset="require('~/assets/image-styles/potolok/potolok1.jpg').srcSet"
       class="absolute top-0 left-0 w-full h-full object-cover object-top"
     />
-    <div class="relative container text-center pt-4 pb-8 md:p-8 bg-black text-white bg-opacity-75">
+    <div class="relative container text-center pt-4 pb-8 md:p-8 bg-black text-white bg-opacity-75 hidden-btm" v-observe-visibility="inView">
       <h2 class="font-bold text-3xl md:text-5xl">Внимание акция!</h2>
       <p
         class="font-bold text-2xl md:text-4xl mt-4"

@@ -21,12 +21,12 @@
           <button class="calculator__toggler">Стандарт</button>
         </div>
         <div class="calculator__controls">
-          <!-- <label for="plan" class="calculator__label sm:hidden">Выберите тип ремонта</label>
+          <label for="plan" class="calculator__label sm:hidden">Выберите тип ремонта</label>
           <select id="plan" class="calculator__select form-select mb-4 sm:hidden">
             <option selected value="econom">Эконом</option>
             <option value="full">Капитальный</option>
             <option value="standart">Стандарт</option>
-          </select>-->
+          </select>
           <label for="area" class="calculator__label">Введите площадь для расчета</label>
           <span class="form-field calculator__input">
             <input id="area" value="42" class="form-text" />
@@ -39,9 +39,14 @@
           <strong class="calculator__operand">105000 р</strong>
         </div>
         <p class="calculator__services-title">Перечень работ</p>
-        <ul v-for="i in [current - 1]" :key="i" class="calculator__services">
-          <li v-for="(item, index) in services[current - 1].list" :key="index">{{ item }}</li>
-        </ul>
+        <transition-group
+          name="list"
+          class="calculator__services"
+          tag="ul"
+          :style="'height:' + services[current - 1].list.length*45 + 'px;'"
+        >
+          <li v-for="item in services[current - 1].list" :key="item">{{ item }}</li>
+        </transition-group>
       </div>
     </div>
   </section>
@@ -57,17 +62,43 @@ export default {
         {
           plan: '"Эконом"',
           price: '(2500 р/м.кв.)',
-          list: ['gdagsdg', 'gdsgsdgsdg'],
+          list: [
+            'Обработка грунтовкой или бетонконтактом стен, полов и потолков',
+            'Демонтаж обоев, линолеума, ламината, паркета, краски, кафеля',
+            'Демонтаж или возведение перегородок',
+            'Шпаклевка и штукатурка стен и потолков по маякам',
+            'Оклейка обоями или покраска стен и потолков',
+          ],
         },
         {
           plan: '"Капитальный"',
           price: '(6000 р/м.кв.)',
-          list: ['gdagsdg', 'gdsgsdgsdg', 'fgadgdagsdg', 'fsdafgsadf'],
+          list: [
+            'Обработка грунтовкой или бетонконтактом стен, полов и потолков',
+            'Демонтаж обоев, линолеума, ламината, паркета, краски, кафеля',
+            'Демонтаж или возведение перегородок',
+            'Шпаклевка и штукатурка стен и потолков по маякам',
+            'Оклейка обоями или покраска стен и потолков',
+            'Декоративная штукатурка и обработка лаком',
+            'Монтаж натяжных потолков или многоуровневых потолков из гипсокартона',
+            'Установка окон и дверей',
+            'Электромонтажные работы',
+            'Сантехнические работы',
+          ],
         },
         {
           plan: '"Стандарт"',
           price: '(4000 р/м.кв.)',
-          list: ['gdagsdg', 'gdsgsdgsdg', 'fgadgdagsdg'],
+          list: [
+            'Обработка грунтовкой или бетонконтактом стен, полов и потолков',
+            'Демонтаж обоев, линолеума, ламината, паркета, краски, кафеля',
+            'Демонтаж или возведение перегородок',
+            'Шпаклевка и штукатурка стен и потолков по маякам',
+            'Оклейка обоями или покраска стен и потолков',
+            'Декоративная штукатурка и обработка лаком',
+            'Монтаж натяжных потолков или многоуровневых потолков из гипсокартона',
+            'Установка окон и дверей',
+          ],
         },
       ],
     }
