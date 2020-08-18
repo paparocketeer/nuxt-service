@@ -4,8 +4,6 @@
 
 [Demo](https://remont-861.netlify.app/) + [Hosted](https://remont-861.ru)
 
-https://remont-861.netlify.app/
-
 ## Build Setup
 
 ```bash
