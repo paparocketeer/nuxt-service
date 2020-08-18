@@ -124,8 +124,7 @@ ul {
     padding: 0;
 }
 html {
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-        "Noto Color Emoji";
+    font-family: Proxima;
     line-height: 1.5;
 }
 *,
@@ -276,24 +275,27 @@ img {
     }
 }
 @font-face {
-    font-family: AvenirNext;
-    src: url(/fonts/AvenirNextCyr-Regular.woff) format("woff"), url(/fonts/AvenirNextCyr-Regular.ttf) format("truetype");
+    font-family: Proxima;
+    src: url(/fonts/ProximaNova-Regular.woff) format('woff'),
+    url(/fonts/ProximaNova-Regular.ttf) format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
-    font-family: AvenirNext;
-    src: url(/fonts/AvenirNextCyr-Bold.woff) format("woff"), url(/fonts/AvenirNextCyr-Bold.ttf) format("truetype");
+    font-family: Proxima;
+    src: url(/fonts/ProximaNova-Bold.woff) format('woff'),
+    url(/fonts/ProximaNova-Bold.ttf) format('truetype');
     font-weight: 700;
     font-style: normal;
 }
+
 body,
 html {
     min-height: 100%;
     color: #2f2f2f;
 }
 html.fonts-loaded {
-    font-family: AvenirNext;
+    font-family: Proxima;
 }
 button {
     font-weight: inherit;
@@ -305,7 +307,7 @@ address {
 .page-enter-active,
 .page-leave-active {
     will-change: opacity;
-    transition: opacity 0.4s;
+    transition: opacity 1.4s;
 }
 .page-enter,
 .page-leave-to {
@@ -398,12 +400,8 @@ address {
     transition: padding 0.3s ease-out;
 }
 .navbar__container {
-    --bg-opacity: 1;
     background-color: #fff;
-    background-color: rgba(255, 255, 255, var(--bg-opacity));
-    --text-opacity: 1;
     color: #000;
-    color: rgba(0, 0, 0, var(--text-opacity));
     display: flex;
     align-items: center;
 }
@@ -416,9 +414,7 @@ address {
 }
 .navbar__link:focus,
 .navbar__link:hover {
-    --text-opacity: 1;
     color: #ffc107;
-    color: rgba(255, 193, 7, var(--text-opacity));
 }
 .navbar__link:focus {
     outline: 0;
@@ -567,18 +563,14 @@ address {
     width: 25%;
     flex-direction: column;
     justify-content: space-between;
-    --text-opacity: 1;
     color: #f5f4f2;
-    color: rgba(245, 244, 242, var(--text-opacity));
 }
 .calculator__plan {
     flex: 1 1 0%;
     padding: 1rem;
     text-align: center;
     border-width: 1px;
-    --border-opacity: 1;
     border-color: #ffc107;
-    border-color: rgba(255, 193, 7, var(--border-opacity));
     transition: background-color 0.1s;
 }
 .calculator__plan + .calculator__plan {
@@ -586,20 +578,14 @@ address {
 }
 .calculator__plan:focus,
 .calculator__plan:hover {
-    --bg-opacity: 1;
     background-color: #2f2f2f;
-    background-color: rgba(47, 47, 47, var(--bg-opacity));
     outline: 0;
 }
 .calculator__plan--active,
 .calculator__plan--active:focus,
 .calculator__plan--active:hover {
-    --bg-opacity: 1;
     background-color: #ffc107;
-    background-color: rgba(255, 193, 7, var(--bg-opacity));
-    --text-opacity: 1;
     color: #000;
-    color: rgba(0, 0, 0, var(--text-opacity));
 }
 .calculator__plan-title {
     display: block;
@@ -608,9 +594,7 @@ address {
 }
 .calculator__panel {
     padding: 1rem;
-    --bg-opacity: 1;
     background-color: #fff;
-    background-color: rgba(255, 255, 255, var(--bg-opacity));
 }
 .calculator__services-title {
     text-align: center;
@@ -623,17 +607,17 @@ address {
     overflow: hidden;
     transition: height .45s ease-out;
 }
-.calculator__services > li {
+.calculator__services > li,
+.service-page__content li {
     padding-top: 1rem;
     font-size: 1.125rem;
 }
-.calculator__services > li:before {
+.calculator__services > li:before,
+.service-page__content li:before {
     border-radius: 9999px;
     flex-shrink: 0;
     border-width: 2px;
-    --border-opacity: 1;
     border-color: #ffc107;
-    border-color: rgba(255, 193, 7, var(--border-opacity));
     margin-right: 0.25rem;
     content: "";
     display: inline-block;
@@ -649,17 +633,13 @@ address {
     flex: 1 1 0%;
     padding: 0.5rem;
     border-width: 1px;
-    --border-opacity: 1;
-    border-color: #a1887f;
-    border-color: rgba(161, 136, 127, var(--border-opacity));
+    border-color: #556080;
     text-align: center;
     font-weight: 700;
 }
 .calculator__controls,
 .calculator__toggler--active {
-    --bg-opacity: 1;
-    background-color: #a1887f;
-    background-color: rgba(161, 136, 127, var(--bg-opacity));
+    background-color: #556080;
 }
 .calculator__controls {
     padding: 1rem;
@@ -698,9 +678,7 @@ address {
 }
 .calculator__sign {
     text-align: center;
-    --text-opacity: 1;
     color: #2f2f2f;
-    color: rgba(47, 47, 47, var(--text-opacity));
     padding: 0.5rem 1rem;
     font-weight: 700;
     font-size: 2.25rem;
@@ -709,20 +687,14 @@ address {
 .calculator__operand {
     text-align: center;
     font-size: 1.5rem;
-    --bg-opacity: 1;
     background-color: #444;
-    background-color: rgba(68, 68, 68, var(--bg-opacity));
-    --text-opacity: 1;
     color: #fff;
-    color: rgba(255, 255, 255, var(--text-opacity));
     padding: 0.5rem;
     word-break: break-all;
     min-height: 52px;
 }
 .calculator__input-button {
-    --bg-opacity: 1;
     background-color: #ffc107;
-    background-color: rgba(255, 193, 7, var(--bg-opacity));
     width: 2.5rem;
     flex-shrink: 0;
     font-size: 1.25rem;
@@ -790,33 +762,23 @@ address {
     opacity: 0.85;
 }
 .button_primary {
-    --bg-opacity: 1;
     background-color: #ffc107;
-    background-color: rgba(255, 193, 7, var(--bg-opacity));
 }
 .button_primary:focus {
     box-shadow: 0 0 0 2px #c79100;
 }
 .button_primary:hover {
-    --bg-opacity: 1;
     background-color: #fff350;
-    background-color: rgba(255, 243, 80, var(--bg-opacity));
 }
 .button_secondary {
-    --bg-opacity: 1;
     background-color: #000;
-    background-color: rgba(0, 0, 0, var(--bg-opacity));
-    --text-opacity: 1;
     color: #fff;
-    color: rgba(255, 255, 255, var(--text-opacity));
 }
 .button_secondary:focus {
     box-shadow: 0 0 0 2px #725b53;
 }
 .button_secondary:hover {
-    --bg-opacity: 1;
     background-color: #725b53;
-    background-color: rgba(114, 91, 83, var(--bg-opacity));
 }
 .button_large {
     padding: 0.75rem 1.5rem;
@@ -857,7 +819,7 @@ address {
 }
 .modal__body {
     position: relative;
-    background: #f5f4f2;
+    background: #556080;
     width: 600px;
     padding: 3rem 1rem 1rem;
     max-width: 90%;
@@ -920,9 +882,7 @@ address {
 }
 .form-field__label {
     font-size: 0.875rem;
-    --text-opacity: 1;
     color: #2f2f2f;
-    color: rgba(47, 47, 47, var(--text-opacity));
     font-weight: 700;
     margin-bottom: 0.25rem;
     display: block;
@@ -940,9 +900,7 @@ address {
     font-size: 0.875rem;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
-    --text-opacity: 1;
     color: #8e0000;
-    color: rgba(142, 0, 0, var(--text-opacity));
     box-sizing: border-box;
     display: block;
 }
@@ -964,9 +922,7 @@ address {
 .form-checkbox {
     width: 1rem;
     height: 1rem;
-    --bg-opacity: 1;
     background-color: #fff;
-    background-color: rgba(255, 255, 255, var(--bg-opacity));
     margin-right: 0.25rem;
     display: inline-block;
     vertical-align: middle;
@@ -1004,16 +960,14 @@ address {
     width: 100%;
 }
 .table th {
-    font-wight: bold;
+    font-weight: bold;
 }
 .table td,
 .table th {
     padding: 0.5rem;
 }
 .table tr:hover {
-    --bg-opacity: 1;
-    background-color: #b3b8ae;
-    background-color: rgba(179, 184, 174, var(--bg-opacity));
+    background-color: #556080;
 }
 .decor {
     position: relative;
@@ -1071,6 +1025,12 @@ html.has-observer .decor--visible .decor__element {
         left: 0;
     }
 }
+
+@media (max-width: 539.9px) {
+    .decor {
+        height: 200px;
+    }
+}
 .slider,
 .slider__slide {
     position: relative;
@@ -1120,9 +1080,7 @@ html.has-observer .decor--visible .decor__element {
     width: 1.25rem;
     height: 1.25rem;
     margin: 0.5rem;
-    --bg-opacity: 1;
     background-color: #ffc107;
-    background-color: rgba(255, 193, 7, var(--bg-opacity));
     font-size: 0;
     opacity: 0.5;    
 }
@@ -1314,22 +1272,18 @@ html.has-observer .decor--visible .decor__element {
 .services-dropdown{
     min-width: 16rem;
     position: absolute;
-    top: 100%;
-    right: 80px;
+    top: 3rem;
+    right: -6rem;
 }
 
 @media (max-width: 767.98px) {
     .services-dropdown{
-        right: 0;
+        top: 2rem;
     }
 }
 .services-nav {
-    --bg-opacity: 1;
-    background-color: #725b53;
-    background-color: rgba(114, 91, 83, var(--bg-opacity));
-    --text-opacity: 1;
+    background-color: #556080;
     color: #fff;
-    color: rgba(255, 255, 255, var(--text-opacity));
     padding: 1rem;
     position: relative;
     overflow: hidden;
@@ -1340,9 +1294,7 @@ html.has-observer .decor--visible .decor__element {
 }
 .services-nav__link:focus,
 .services-nav__link:hover {
-    --text-opacity: 1;
     color: #ffc107;
-    color: rgba(255, 193, 7, var(--text-opacity));
 }
 .services-nav__link:focus {
     outline: 0;
@@ -1363,9 +1315,7 @@ html.has-observer .decor--visible .decor__element {
     align-items: center;
     justify-content: center;
     position: relative;
-    --text-opacity: 1;
     color: #fff;
-    color: rgba(255, 255, 255, var(--text-opacity));
     text-align: center;
     font-weight: 700;
     font-size: 2.25rem;
@@ -1379,9 +1329,7 @@ html.has-observer .decor--visible .decor__element {
     right: 0;
     bottom: 0;
     left: 0;
-    --bg-opacity: 1;
     background-color: #000;
-    background-color: rgba(0, 0, 0, var(--bg-opacity));
     opacity: 0.5;
 }
 .service-page__main-image {
@@ -1451,9 +1399,7 @@ html.has-observer .decor--visible .decor__element {
     display: block;
     height: 1rem;
     margin: 0 1.5rem;
-    --bg-opacity: 1;
-    background-color: #a1887f;
-    background-color: rgba(161, 136, 127, var(--bg-opacity));
+    background-color: #556080;
 }
 .media-card__title {
     font-weight: 700;
@@ -1484,16 +1430,12 @@ html.has-observer .decor--visible .decor__element {
     bottom: 1rem;
 }
 .media-card__overlay {
-    --bg-opacity: 1;
     background-color: #000;
-    background-color: rgba(0, 0, 0, var(--bg-opacity));
     opacity: 0.6;
     transition: opacity 0.3s;
 }
 .media-card__footer {
-    --text-opacity: 1;
     color: #fff;
-    color: rgba(255, 255, 255, var(--text-opacity));
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -1508,9 +1450,7 @@ html.has-observer .decor--visible .decor__element {
 .testimonials__panel,
 .testimonials__panel-info {
     width: 100%;
-    --bg-opacity: 1;
     background-color: #fff;
-    background-color: rgba(255, 255, 255, var(--bg-opacity));
     padding: 2rem 1rem;
 }
 .testimonials__panel-info {
@@ -1518,9 +1458,7 @@ html.has-observer .decor--visible .decor__element {
     padding-top: 0;
 }
 .testimonials__item {
-    --bg-opacity: 1;
     background-color: #fff;
-    background-color: rgba(255, 255, 255, var(--bg-opacity));
 }
 .testimonials__title {
     font-size: 1.125rem;
@@ -1549,12 +1487,8 @@ html.has-observer .decor--visible .decor__element {
     }
 }
 .footer {
-    --bg-opacity: 1;
     background-color: #000;
-    background-color: rgba(0, 0, 0, var(--bg-opacity));
-    --text-opacity: 1;
     color: #fff;
-    color: rgba(255, 255, 255, var(--text-opacity));
     padding-top: 2rem;
     padding-bottom: 2rem;
     font-size: 0.875rem;
@@ -1566,18 +1500,14 @@ html.has-observer .decor--visible .decor__element {
     margin-bottom: 1rem;
 }
 .footer__link {
-    --text-opacity: 1;
-    color: #a1887f;
-    color: rgba(161, 136, 127, var(--text-opacity));
+    color: #556080;
 }
 .footer__link:hover {
     text-decoration: underline;
 }
 .footer__link:focus,
 .footer__link:hover {
-    --text-opacity: 1;
     color: #fff;
-    color: rgba(255, 255, 255, var(--text-opacity));
 }
 .footer__link:focus {
     outline: 0;

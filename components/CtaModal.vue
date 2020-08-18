@@ -20,19 +20,18 @@
           <h2 class="text-xl font-bold text-center mb-8">Наши контакты</h2>
           <p class="text-center">
             Адрес:
-            <span>г. Краснодар, ул. Лавочкина, 21</span>
+            <span>г. Анапа, ул. Парковая, 131</span>
             <br />E-mail:
-            <a href="/cdn-cgi/l/email-protection#9dfce5fcf3f9e8eff2ebddf0fcf4f1b3efe8">
+            <a href="mailto:mail@remont-861.ru">
               <span
                 class="__cf_email__"
-                data-cfemail="d2b3aab3bcb6a7a0bda492bfb3bbbefca0a7"
-              >[email&#160;protected]</span>
+              >mail@remont-861.ru</span>
             </a>
           </p>
           <hr class="my-4 border-secondary" />
           <p class="text-center">
             Телефон:
-            <a href="tel:+89183536494">
+            <a href="tel:+78613122122">
               <svg
                 width="16"
                 height="16"
@@ -45,11 +44,11 @@
                   d="M18.5 14.2L16 11.7c-.9-.9-2.4-.5-2.8.6-.2.8-1.1 1.3-2 1.1a7.8 7.8 0 01-4.6-4.7c-.3-.8.2-1.7 1-2C8.8 6.5 9.3 5 8.3 4L5.8 1.5C5 .8 4 .8 3.3 1.5L1.6 3.2C0 5 1.8 9.7 6 13.9c4.3 4.3 9 6.3 10.8 4.5l1.7-1.8c.7-.7.7-1.8 0-2.4z"
                 />
               </svg>
-              +7 (918) 353-64-94
+              +7 (861) 312-21-22
             </a>
             <br />WhatsApp:
             <a
-              href="https://wa.me/89183536494?text=Я%20заинтересован%20услугами%20ремонта"
+              href="https://wa.me/78613122122?text=Я%20заинтересован%20услугами%20ремонта"
             >
               <svg
                 width="16"
@@ -63,20 +62,19 @@
                   d="M10 1a9 9 0 00-7.3 14.3l-1.1 3.3 3.5-1A9 9 0 1010 1zm5.2 12.7c-.2.6-1 1.1-1.7 1.3-.5 0-1.1.2-3.2-.7-2.6-1-4.3-3.8-4.5-4 0-.1-1-1.4-1-2.7 0-1.3.6-1.9.9-2.2.2-.2.6-.3 1-.3h.2c.3 0 .4 0 .6.5l.8 2s.1.2 0 .4c0 .2-.1.3-.3.4 0 .2-.2.3-.4.5 0 0-.2.2 0 .5A8 8 0 009 11.2c1 1 1.8 1.2 2.1 1.3h.6l.8-1c.1-.3.4-.3.6-.2l1.8.9c.3 0 .4.1.5.3l-.2 1.2z"
                 />
               </svg>
-              +7 (918) 353-64-94
+              +7 (861) 312-21-22
             </a>
           </p>
           <h3
             class="text-lg font-bold text-center mt-8"
           >Хотите получить бесплатную консультацию? Оставьте свой телефон и мы перезвоним Вам!</h3>
           <form @submit.prevent="checkForm" method="post" class="form mt-4 max-w-sm mx-auto">
-            <div class="form__notify bg-success text-white">Сообщение успешно отправлено</div>
-            <div class="form__notify bg-danger text-white">Произошла ошибка при отправке</div>
 
             <label for="name" class="form-field">
               <span class="form-field__label">Ваше имя</span>
               <input
                 v-model="name"
+                placeholder="Александр"
                 type="text"
                 name="name"
                 class="form-text"
@@ -89,6 +87,7 @@
                 v-model="phone"
                 v-mask="'+#(###) ###-##-##'"
                 pattern="^\+\d{1}\(\d{3}\)\s\d{3}-\d{2}-\d{2}$"
+                placeholder="+7(999) 999-99-99"
                 required
                 name="phone"
                 type="tel"
@@ -116,8 +115,8 @@
               </ul>
             </div>
             <div
-              v-if="success"
-              class="form__notify bg-success text-white"
+              :class="{'form__notify--visible' : success}"
+              class="form__notify bg-success"
             >Сообщение успешно отправлено</div>
           </form>
         </div>
@@ -155,9 +154,6 @@ export default {
       if (!this.phone) {
         this.errors.push('Необходимо ввести телефон')
       }
-      // if (!this.check) {
-      //   this.errors.push('Вы должны согласиться с обработкой ваших данных')
-      // }
 
       if (!this.errors.length) {
         this.submitForm()
@@ -198,11 +194,6 @@ export default {
           this.errors.push('An error occured, please try again later')
         })
     },
-
-    // validEmail: function (email) {
-    //   let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    //   return re.test(email)
-    // },
   },
 }
 </script>

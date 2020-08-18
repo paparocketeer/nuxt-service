@@ -1,7 +1,7 @@
 <template>
   <div class="flex-grow">
-    <page-header :posts="posts" />
-    <carousel
+    <page-header :posts="posts" />    
+      <carousel
       :slides="slides"
       :transition="'fade'"
       :imgClass="'w-full h-75-screen lg:max-h-2xl slider__image'"
@@ -13,7 +13,6 @@
     <section-cta />
     <section-services :posts="posts"/>
     <section-calc />
-    <section-testimonials />
     <section-hire />
     <page-footer />
   </div>
@@ -26,7 +25,6 @@ import SectionCalc from '@/components/Sections/SectionCalc.vue'
 import SectionCta from '@/components/Sections/SectionCta.vue'
 import SectionHire from '@/components/Sections/SectionHire.vue'
 import SectionServices from '@/components/Sections/SectionServices.vue'
-import SectionTestimonials from '@/components/Sections/SectionTestimonials.vue'
 
 export default {
   components: {
@@ -35,7 +33,6 @@ export default {
     SectionCta,
     SectionHire,
     SectionServices,
-    SectionTestimonials,
     Carousel,
   },
 

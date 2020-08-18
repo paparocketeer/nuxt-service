@@ -1,12 +1,12 @@
 <template>
-  <div class="service-page content-animated flex-grow">
+  <div class="content-animated flex-grow">
     <page-header :posts="navs" />
     <div class="service-page__title">
       <img :src="$config.ASSETS_URL + post.image.path " class="service-page__main-image" />
       <h1 class="relative z-1">{{ post.title }}</h1>
     </div>
     <div class="section section_large container md:flex">
-      <main class="w-full content" v-html="$options.filters.parseMd(post.content)"></main>
+      <main class="w-full service-page__content content" v-html="$options.filters.parseMd(post.content)"></main>
       <aside class="w-full mt-8 md:max-w-xs md:mt-0 md:ml-8 lg:ml-12" data-animate="show">
         <nav class="services-nav">
           <svg
@@ -59,7 +59,7 @@
     </section>
     <section tag="section" class="section bg-muted-light">
       <div class="container">
-        <h2 class="font-bold text-center text-2xl mb-8">Цены на потолочные работы в Краснодаре</h2>
+        <h2 class="font-bold text-center text-2xl mb-8">Прейскурант цен на работы</h2>
         <table class="table">
           <thead>
             <tr>
@@ -76,61 +76,7 @@
         </table>
       </div>
     </section>
-    <section class="section section_large">
-      <div class="container">
-        <div class="flex flex-wrap -mx-4 lg:-mx-8">
-          <div class="content-animated w-full px-4 md:w-1/2 lg:px-8 lg:w-3/5">
-            <h2 class="font-bold text-3xl" data-animate="show">Бесплатный вызов замерщика</h2>
-            <p class="mt-4" data-animate="show">
-              Оставьте свои данные, чтобы наш специалист мог связаться с Вами для предварительного обсуждения деталей вашего проекта. После этого мы постараемся в кратчайшие сроки организовать приезд замерщика по указанному
-              адресу.
-            </p>
-            <p class="mt-4" data-animate="show">
-              Выезд замерщика осуществляется
-              <strong>БЕСПЛАТНО.</strong>
-            </p>
-          </div>
-          <div class="w-full px-4 mt-8 md:mt-0 md:w-1/2 lg:px-8 lg:w-2/5">
-            <form
-              action="https://mailer.palitraweb.com.ua/api/send"
-              method="POST"
-              class="form px-6 py-8 bg-secondary text-black"
-            >
-              <div class="form__notify bg-success text-white">Сообщение успешно отправлено</div>
-              <div class="form__notify bg-danger text-white">Произошла ошибка при отправке</div>
-              <label class="form-field">
-                <span class="form-field__label">Ваше имя</span>
-                <input name="name" placeholder="Александр" class="form-text" />
-                <!---->
-              </label>
-              <label class="form-field">
-                <span class="form-field__label">Ваш телефон (обязательно)</span>
-                <input
-                  placeholder="+7(999) 999-99-99"
-                  pattern="^\+7\(\d{3}\)\s\d{3}-\d{2}-\d{2}$"
-                  name="phone"
-                  type="tel"
-                  required="required"
-                  class="form-text"
-                />
-                <!---->
-              </label>
-              <button
-                type="submit"
-                class="button button_large button_primary w-full mt-8"
-              >Отправить заявку</button>
-              <label class="form-field block mt-4">
-                <!---->
-                <input type="checkbox" checked="checked" required="required" class="form-checkbox" />
-                <span class="align-middle text-sm">Согласен(а) на обработку моих персональных данных</span>
-                <!---->
-              </label>
-              <input type="hidden" name="api-key" value="7248129cbeebbe756de3d5b2312627dc" />
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section-hire />
     <page-footer />
   </div>
 </template>

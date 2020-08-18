@@ -1,5 +1,9 @@
 # nuxt-service
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/07109c6d-a367-4a8d-aeb3-8c5094aa5a13/deploy-status)](https://app.netlify.com/sites/keen-goldstine-f9490c/deploys)
+
+[Demo](https://remont-861.netlify.app/) + [Hosted](https://remont-861.ru)
+
 ## Build Setup
 
 ```bash
